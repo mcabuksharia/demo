@@ -1,0 +1,32 @@
+<h1>Employees#new</h1>
+
+<%= form_for @employee,url: {action: "create"},:html => {:multipart => true} do |f| %>
+<% if @employee.errors.any? %>
+<ul>
+<% @employee.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<%end%>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+</ul>
+<%end%>
+<p> Employee Name: <br />  <%= f.text_field :emp_name %></p>
+<p>  Employee Designation:<br /><%= f.text_field :emp_des %></p>
+<p>
+    <label>My Avatar</label>
+    <%= image_tag(@employee.avatar_url) if @employee.avatar? %>
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+  </p>
+<p><%= f.submit 'Submit' %></p>
+
+<% end %>
+
+
+
+
+
+
+
+<p>Find me in app/views/employees/new.html.erb</p>

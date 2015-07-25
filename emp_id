@@ -1,0 +1,6 @@
+      invoke  active_record
+      create    db/migrate/20150718105612_create_employees.rb
+   identical    app/models/employee.rb
+      invoke    test_unit
+   identical      test/models/employee_test.rb
+   identical      test/fixtures/employees.yml

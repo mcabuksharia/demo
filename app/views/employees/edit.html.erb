@@ -1,0 +1,12 @@
+<h1>Employees#edit</h1>
+<%= form_for @employee,url: {action: "update"} do |emp| %>
+<p>Emp name: <%= emp.text_field :emp_name%></p>
+<p>Emp Designation: <%= emp.text_field :emp_des %></p>
+<%= image_tag(:avatar,height: '200', width: '250') %>
+<%= emp.file_field :avatar %>
+<%= emp.submit 'update' %>
+<%= link_to 'See All', employees_path %>
+<% end %>
+
+
+<p>Find me in app/views/employees/edit.html.erb</p>

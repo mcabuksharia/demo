@@ -1,0 +1,8 @@
+<h1>Employees#show</h1>
+
+<p>Emp name: <%= @employee.emp_name %></p>
+<p>Emp Designation: <%= @employee.emp_des %></p>
+<p>Emp Designation: <%= @employee.avatar %></p>
+<p><%= image_tag(@employee.avatar,height: '200', width: '250') %></p>
+<%= link_to 'See All', employees_path %>
+<p>Find me in app/views/employees/show.html.erb</p>

@@ -1,0 +1,10 @@
+<h1>Teams#show</h1>
+
+<% cache @team do%>
+  <h1>Team: <%= @team.team_name %></h1>
+
+  
+<% end %>
+<%= link_to "Employee", new_employee_path %>
+
+<p>Find me in app/views/teams/show.html.erb</p>
