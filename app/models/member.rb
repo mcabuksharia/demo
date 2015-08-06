@@ -1,3 +1,3 @@
 class Member < ActiveRecord::Base
-belongs_to :team, touch: true
+has_belongs_to_many :team  #, touch: true
 end

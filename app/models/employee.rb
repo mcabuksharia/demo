@@ -23,6 +23,12 @@ Date.today
 end
 private
 def verify_name
+	#debugger
+	@employee = Employee.exists?(emp_name: "#{emp_name}")
+	if(@employee)
+		
+			puts 'root' 
+	end	
 	#@employee =Employee.all
 	#return @employee
 end
