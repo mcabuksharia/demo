@@ -2,7 +2,7 @@ class EmployeesController < ApplicationController
 #before_action :verify, :only =>:index
 #before_save :ding
 #around_filter :new
-before_action :authenticate_user!
+#before_action :authenticate_user!
   def index
   	@employees=Employee.all
   	@employee = @employees.order(:emp_name).page params[:page]  # used for kaminari gem
