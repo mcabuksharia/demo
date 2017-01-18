@@ -1,0 +1,52 @@
+
+<link rel="stylesheet" href="/assets/theme.default.css">
+<!-- load jQuery and tablesorter scripts -->
+<script type="text/javascript" src="/assets/jquery-latest.js"></script>
+<script type="text/javascript" src="/assets/jquery.tablesorter.js"></script>
+	
+<!-- tablesorter widgets (optional) -->
+
+
+
+
+<h1>Employees#index</h1>
+<div>
+<%= link_to 'Go Back to Team ', '/' %>
+<table id="myTable" class ="tablesorter">
+
+<thead><tr><th>Employee Name </th><th>Employee Designation </th><th>Employee Image </th></tr></thead>
+<tbody>
+<% @employee.each do |emp| %>
+<tr>
+<td><%= emp.emp_name %></td><td><%= emp.emp_des %></td><td><%= image_tag(emp.avatar,height: '200', width: '250') %></td><td><%= link_to 'Delete',employee_path(emp),:method=> :delete%></td><td><%= link_to 'Edit',edit_employee_path(emp) %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<%= paginate @employee, :left => 1, :right => 3 %>
+</div>
+<p>Find me in app/views/employees/index.html.erb</p>
+
+
+
+
+
+<script type='text/javascript'>
+    $(document).ready(function() { 
+        $("#myTable").tablesorter({ 
+            //for example we want to disable the 
+            //password column (5th column) from sorting
+            //we will specify '4' since it was indexed
+            //(count starts at '0')
+            //and set its property to 'false'
+            headers: { 
+                1: {    
+                    sorter: false 
+                }
+            }
+              
+        }); 
+    });
+</script>
+
+

@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808042747) do
+ActiveRecord::Schema.define(version: 20170113020740) do
+
+  create_table "assemblies", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "manufacturing_date", limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "assemblies_parts", id: false, force: :cascade do |t|
+    t.integer "assembly_id", limit: 4
+    t.integer "part_id",     limit: 4
+  end
+
+  add_index "assemblies_parts", ["assembly_id"], name: "index_assemblies_parts_on_assembly_id", using: :btree
+  add_index "assemblies_parts", ["part_id"], name: "index_assemblies_parts_on_part_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.string   "emp_name",   limit: 255
@@ -20,6 +35,16 @@ ActiveRecord::Schema.define(version: 20150808042747) do
     t.datetime "updated_at",             null: false
     t.string   "avatar",     limit: 255
   end
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.string   "member_name", limit: 255
@@ -35,6 +60,13 @@ ActiveRecord::Schema.define(version: 20150808042747) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "order_no", limit: 4
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "part_no",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -77,9 +109,13 @@ ActiveRecord::Schema.define(version: 20150808042747) do
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "unlock_token",           limit: 255
+    t.datetime "locked_at"
+    t.integer  "failed_attempts",        limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "identities", "users"
 end

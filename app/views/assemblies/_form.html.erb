@@ -1,0 +1,44 @@
+<%= form_for(@assembly) do |f| %>
+  <% if @assembly.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@assembly.errors.count, "error") %> prohibited this assembly from being saved:</h2>
+
+      <ul>
+      <% @assembly.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :manufacturing_date %><br>
+    <%= f.text_field :manufacturing_date %>
+  </div>
+  <div class="field">
+    <%= f.label :Part_No %><br>
+    <%= f.select :part_ids ,options_for_select(@part.map{|c| [c.name]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :All_Part_No %><br>
+    <%= f.collection_check_boxes(:part_ids, @part, :id,:name) %>
+    <%= f.hidden_field :part_id, value: params[:part_id] %>
+  </div>
+  <%= link_to "Update Unit", id:'btn-info',onclick:"clickAndDisable(this);" %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script> 
+   function clickAndDisable(link) {
+    alert("hello");
+     // disable subsequent clicks
+     link.onclick = function(event) {
+        event.preventDefault();
+     }
+   }   
+</script>

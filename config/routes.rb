@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  
-  devise_for :users
+  resources :parts
+  resources :assemblies
+  #devise_for :users
  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'teams#show'
+   
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -15,6 +16,13 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  resources :teams
+  root 'teams#show'
+
+
   resources :employees
 
 		resources :teams do
@@ -22,6 +30,9 @@ Rails.application.routes.draw do
 			get 'show'
 		end
 	end
+	resources :posts,:comments, module: "admin"
+
+
   # Example resource route with options:
   #   resources :products do
   #     member do

@@ -6,9 +6,7 @@ before_action :authenticate_user!
   def index
   	@employees=Employee.all
   	@employee = @employees.order(:emp_name).page params[:page]  # used for kaminari gem
-
-  	
-
+		
   end
 
   def new
@@ -31,6 +29,7 @@ before_action :authenticate_user!
   	@employee=Employee.find(params[:id])
   	respond_to do |format|
       format.html
+
   end
   end
 

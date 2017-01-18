@@ -1,6 +1,8 @@
 <h1>Employees#new</h1>
-<% If user_signed_in? %>
-	<li>Hello #{user.email} </li>
+
+
+<% if user_signed_in? %>
+	<li>Hello  Welcome <%= current_user.email %> </li>
 	  <li>
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
   </li>
@@ -9,7 +11,11 @@
   <%= link_to('Login', new_user_session_path)  %>
   </li>
 
-<% end %>
+<%end%>
+
+
+
+
 <%= form_for @employee,url: {action: "create"},:html => {:multipart => true} do |f| %>
 <% if @employee.errors.any? %>
 <ul>
@@ -32,11 +38,5 @@
 <p><%= f.submit 'Submit' %></p><%= link_to 'Back' , root_path %>
 
 <% end %>
-
-
-
-
-
-
 
 <p>Find me in app/views/employees/new.html.erb</p>

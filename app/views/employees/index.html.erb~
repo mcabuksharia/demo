@@ -1,0 +1,84 @@
+<html>
+<head>
+<link rel="stylesheet" href="/assets/theme.default.css">
+<!-- load jQuery and tablesorter scripts -->
+<script type="text/javascript" src="/assets/jquery-latest.js"></script>
+<script type="text/javascript" src="/assets/jquery.tablesorter.js"></script>
+
+<!-- tablesorter widgets (optional) -->
+
+
+</head>
+<body>
+
+<h1>Employees#index</h1>
+<div>
+<table id="myTable" class ="tablesorter">
+
+<thead><tr><th>Employee Name </th><th>Employee Designation </th><th>Employee Image </th></tr></thead>
+<tbody>
+<tr>
+<% @employee.each do |emp| %>
+<tr>
+<td><%= emp.emp_name %></td><td><%= emp.emp_des %></td><td><%= image_tag(emp.avatar,height: '200', width: '250') %></td><td><%= link_to 'Delete',employee_path(emp),:method=> :delete%></td><td><%= link_to 'Edit',edit_employee_path(emp) %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<%= paginate @employee, :left => 1, :right => 3 %>
+</div>
+<p>Find me in app/views/employees/index.html.erb</p>
+
+
+
+
+<table id="myable" class="tablesorter">
+  <thead>
+    <tr>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Email</th>
+      <th>Due</th>
+      <th>Web Site</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Smith</td>
+      <td>John</td>
+      <td>jsmith@gmail.com</td>
+      <td>$50.00</td>
+      <td>http://www.jsmith.com</td>
+    </tr>
+    <tr>
+      <td>Bach</td>
+      <td>Frank</td>
+      <td>fbach@yahoo.com</td>
+      <td>$50.00</td>
+      <td>http://www.frank.com</td>
+    </tr>
+    <tr>
+      <td>Doe</td>
+      <td>Jason</td>
+      <td>jdoe@hotmail.com</td>
+      <td>$100.00</td>
+      <td>http://www.jdoe.com</td>
+    </tr>
+    <tr>
+      <td>Conway</td>
+      <td>Tim</td>
+      <td>tconway@earthlink.net</td>
+      <td>$50.00</td>
+      <td>http://www.timconway.com</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+<script>
+$(function(){
+  $("#myTable").tablesorter();
+});
+</script>
+
+</html>
